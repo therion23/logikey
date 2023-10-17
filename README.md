@@ -1,5 +1,5 @@
 # logikey
-Using a secondary keyboard for input on Linux, i.e. for Home Assistant triggers, without disturbing your X session.
+Using a secondary keyboard for input on Linux (a keypad, in this example), i.e. for Home Assistant triggers, without disturbing your X session.
 
 This is all a HOWTO, very much inspired by the acquisition of a LogiLink keypad, and the urge to hang it on my wall and control Home Assistant.
 
