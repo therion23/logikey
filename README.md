@@ -23,6 +23,8 @@ The sample script uses a few files located in ~/.logilink -
 - ~/.logilink/kodisecret is the authentication for Kodi in user:pass format, i.e. yodude:howsitgoing
 - ~/.logilink/mpdsecret is the MPD password, i.e. letmein
 
+(Make sure to chmod 400 all of those!)
+
 Most important, ~/.logilink/device is what that article above taught you (you did read it, right?).
 
 You can always file a bug here, as long as you keep in mind this is a tutorial, not something to just deploy.
