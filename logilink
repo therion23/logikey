@@ -1,0 +1,92 @@
+#!/bin/sh
+
+# Inspired by Gareth Cronin @ Medium
+
+xinput disable "keyboard:`cat ~/.logilink/device`"
+
+amixer () {
+  `which amixer` -q sset "Speakers" - $1 -M
+}
+
+mpc () {
+  `which mpc` -q -P `cat ~/.logilink/mpdsecret` $1
+}
+
+hascript () {
+  curl -s -X POST -H "Content-Type: application/json" -H "Authorization: Bearer `cat ~/.logilink/hasstoken`" -d '{"entity_id": "script.'$1'"}' http://localhost:8123/api/services/script/turn_on -o /dev/null
+}
+
+hashell () {
+  curl -s -X POST -H "Content-Type: application/json" -H "Authorization: Bearer `cat ~/.logilink/hasstoken`" http://localhost:8123/api/services/shell_command/$1 -o /dev/null
+}
+
+kodi () {
+curl -s -X POST -H "content-type:application/json" "http://`cat ~/.logilink/kodisecret`@192.168.2.4:8080/jsonrpc" -d '{ "jsonrpc": "2.0", "id": "1", "method": "GUI.ShowNotification", "params": { "title":"'"$1"'", "message":"'"$2"'", "image":"http://192.168.2.3/cvlwc/gfx/Sevenstar.png", "displaytime":10000 } }' -o /dev/null
+}
+
+while true
+do
+  KEY=`logikey`
+  case $KEY in
+    42) # Backspace
+        ;;
+    83) # Num Lock
+          hascript "sound_settings_movie"
+          hashell "tv_input_hdmi1"
+        ;;
+    84) # /
+          hascript "sound_settings_music"
+        ;;
+    85) # *
+          hascript "sound_settings_gaming"
+          hashell "tv_input_hdmi2"
+        ;;
+    86) # -
+          amixer "5-"
+        ;;
+    87) # +
+          amixer "5+"
+        ;;
+    88) # Enter
+          hascript "sound_settings_music"
+          hascript "random_album"
+        ;;
+    89) # 1
+        ;;
+    90) # 2
+          hascript "light_group_previous"
+        ;;
+    91) # 3
+        ;;
+    92) # 4
+          mpc "prev"
+        ;;
+    93) # 5
+          mpc "toggle"
+        ;;
+    94) # 6
+          mpc "next"
+        ;;
+    95) # 7
+          ARTIST=`echo "currentsong" | nc -q 1 localhost 6600 | grep ^Artist: | cut -d " " -f 2-`
+          TITLE=`echo "currentsong" | nc -q 1 localhost 6600 | grep ^Title: | cut -d " " -f 2-`
+          kodi "$TITLE" "$ARTIST"
+        ;;
+    96) # 8
+          hascript "light_group_next"
+        ;;
+    97) # 9
+        ;;
+    98) # 0
+          hascript "killswitch"
+        ;;
+    99) # ,
+          hascript "sound_settings_music"
+          hascript "random_book"
+        ;;
+    *) ;;
+  esac
+done
+
+xinput enable "keyboard:`cat ~/.logilink/device`"
+
