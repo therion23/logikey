@@ -27,5 +27,6 @@ The sample script uses a few files located in ~/.logilink -
 
 Most important, ~/.logilink/device contains the device string that the article above taught you (you did read it, right?) - mine contains "MOSART Semi. 2.4G Keyboard Mouse", so that should give you a hint.
 
-You can always file any suggestion as an issue here, as long as you keep in mind this is a tutorial, not something to just deploy.
+Finally, just put the logikey binary somewhere in your PATH and run logilink in the background.
 
+You can always file any suggestion as an issue here, as long as you keep in mind this is a tutorial, not something to just deploy.
