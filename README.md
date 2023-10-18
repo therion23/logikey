@@ -19,13 +19,13 @@ Seriously, this is not production code at all, this is inspiration to roll your 
 
 The sample script uses a few files located in ~/.logilink -
 
-- ~/.logilink/hasstoken is the contents of a Home Assistant token
-- ~/.logilink/kodisecret is the authentication for Kodi in user:pass format, i.e. yodude:howsitgoing
-- ~/.logilink/mpdsecret is the MPD password, i.e. letmein
+- ~/.logilink/hasstoken is the contents of a Home Assistant "Long-lived access token" - remember to paste the whole thing into the file.
+- ~/.logilink/kodisecret is the authentication for Kodi in user:pass format, i.e. yodude:howsitgoing (can be passwordless if you change the port).
+- ~/.logilink/mpdsecret is the MPD password, i.e. letmein (can be passwoedless depending on your setup).
 
-(Make sure to chmod 400 all of those!)
+(Make sure to chmod 400 all of those!).
 
-Most important, ~/.logilink/device is what that article above taught you (you did read it, right?) - mine contains "MOSART Semi. 2.4G Keyboard Mouse", so that should give you a hint.
+Most important, ~/.logilink/device contains the device string that the article above taught you (you did read it, right?) - mine contains "MOSART Semi. 2.4G Keyboard Mouse", so that should give you a hint.
 
-You can always file a bug here, as long as you keep in mind this is a tutorial, not something to just deploy.
+You can always file any suggestion as an issue here, as long as you keep in mind this is a tutorial, not something to just deploy.
 
