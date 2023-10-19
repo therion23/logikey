@@ -20,8 +20,8 @@ hashell () {
   curl -s -X POST -H "Content-Type: application/json" -H "Authorization: Bearer `cat ~/.logilink/hasstoken`" http://localhost:8123/api/services/shell_command/$1 -o /dev/null
 }
 
-kodi () {
-curl -s -X POST -H "content-type:application/json" "http://`cat ~/.logilink/kodisecret`@192.168.2.4:8080/jsonrpc" -d '{ "jsonrpc": "2.0", "id": "1", "method": "GUI.ShowNotification", "params": { "title":"'"$1"'", "message":"'"$2"'", "image":"http://192.168.2.3/cvlwc/gfx/Sevenstar.png", "displaytime":10000 } }' -o /dev/null
+kodipopup () {
+  curl -s -X POST -H "content-type:application/json" "http://`cat ~/.logilink/kodisecret`@192.168.2.4:8080/jsonrpc" -d '{ "jsonrpc": "2.0", "id": "1", "method": "GUI.ShowNotification", "params": { "title":"'"$1"'", "message":"'"$2"'", "image":"http://192.168.2.3/cvlwc/gfx/Sevenstar.png", "displaytime":10000 } }' -o /dev/null
 }
 
 while true
@@ -70,7 +70,7 @@ do
     95) # 7
           ARTIST=`echo "currentsong" | nc -q 1 localhost 6600 | grep ^Artist: | cut -d " " -f 2-`
           TITLE=`echo "currentsong" | nc -q 1 localhost 6600 | grep ^Title: | cut -d " " -f 2-`
-          kodi "$TITLE" "$ARTIST"
+          kodipopup "$TITLE" "$ARTIST"
         ;;
     96) # 8
           hascript "light_group_next"
