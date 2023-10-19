@@ -11,7 +11,7 @@ My Logilink device has an USB receiver, so given that i hardly have any thought 
 
 `KERNEL=="hidraw[0-9]", KERNELS=="1-4:1.0", SYMLINK+="logilink", MODE="0666"`
 
-Hence, the reference to /dev/logilink in the source.
+Hence the reference to /dev/logilink in the source. This also ensures that the hidraw device is readable without root privileges.
 
 Now, speaking of source, if you do not feel like installing FreePascal just to compile a few lines of code, you can basically write your own, as long as it returns an ASCII representation of a key or scan code. That is seriously what logikey.pp does - wait for the last key to be released and return that value.
 
@@ -21,7 +21,7 @@ The sample script uses a few files located in ~/.logilink -
 
 - ~/.logilink/hasstoken is the contents of a Home Assistant "Long-lived access token" - remember to paste the whole thing into the file.
 - ~/.logilink/kodisecret is the authentication for Kodi in user:pass format, i.e. yodude:howsitgoing (can be passwordless if you change the port).
-- ~/.logilink/mpdsecret is the MPD password, i.e. letmein (can be passwoedless depending on your setup).
+- ~/.logilink/mpdsecret is the MPD password, i.e. letmein (can be passwordless depending on your setup).
 
 (Make sure to chmod 400 all of those!).
 
