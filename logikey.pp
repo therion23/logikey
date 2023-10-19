@@ -23,10 +23,8 @@ Begin
     BlockRead(I, Buf[0], 64, NR);
 {$I+}
     If IOResult <> 0 Then WriteLn('Error reading');
-//    If NR > 0 Then For B := 0 To NR Do If Buf[B] > 0 Then Write(Buf[B]);
-//    If NR > 0 Then WriteLn;
     Found := False;
-    If NR > 0 Then For B := 0 To NR Do If Buf[B] > 0 Then Begin
+    If NR > 0 Then For B := 0 To (NR - 1) Do If Buf[B] > 0 Then Begin
       LastVal := (Buf[B]);
       Found := True;
     End;
